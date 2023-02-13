@@ -7,7 +7,7 @@ import org.opencv.core.Scalar;
 
 // Represents an object in a scene
 public class Thing {
-	
+
 	public final String label;
 	public final float confidence;
 	public final Rect2d box;

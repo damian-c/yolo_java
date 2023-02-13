@@ -16,13 +16,13 @@ public class CameraDemo {
 		String configFile = "yolov3.cfg";
 		String weightsFile = "yolov3.weights";
 		String namesFile = "coco.names";
-		
+
 		Vision vision = new Vision(configFile, weightsFile, namesFile, threshold);	
-	    VideoCapture cap = new VideoCapture(camera);	
-	    cap.set(Videoio.CAP_PROP_FRAME_WIDTH, 640);
-	    cap.set(Videoio.CAP_PROP_FRAME_HEIGHT, 480);
+		VideoCapture cap = new VideoCapture(camera);	
+		cap.set(Videoio.CAP_PROP_FRAME_WIDTH, 640);
+		cap.set(Videoio.CAP_PROP_FRAME_HEIGHT, 480);
 		Mat frame = new Mat(); // define a matrix to extract and store pixel info from video
-	    
+
 		// do the processing in a separate thread
 		class VisualProcessing implements Runnable {
 			public void run() {
@@ -32,14 +32,14 @@ public class CameraDemo {
 				}
 			}
 		}
-	    Thread visionThread = new Thread(new VisualProcessing());
-	    visionThread.start();
-	    
-	    while (cap.read(frame)) {
-	    	scene.setImage(frame);
-	    	Mat outputFrame = scene.drawBoxes();
-	    	HighGui.imshow("Camera", outputFrame);
-	    	HighGui.waitKey(1); // imshow requires this event handler to display window
-	    }
+		Thread visionThread = new Thread(new VisualProcessing());
+		visionThread.start();
+
+		while (cap.read(frame)) {
+			scene.setImage(frame);
+			Mat outputFrame = scene.drawBoxes();
+			HighGui.imshow("Camera", outputFrame);
+			HighGui.waitKey(1); // imshow requires this event handler to display window
+		}
 	}     
 }
