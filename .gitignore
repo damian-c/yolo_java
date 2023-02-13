@@ -1,3 +1,10 @@
+# weights file
+*.weights
+
+# test files
+*.jpg
+*.mp4
+
 # Compiled class file
 *.class
 
